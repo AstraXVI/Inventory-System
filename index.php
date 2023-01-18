@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap5.0.1.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/datatables-1.10.25.min.css" />
+  <link rel="stylesheet" href="css/dashboard.css"/>
   <title>DataTable CRUD</title>
   <style type="text/css">
     .btnAdd {
@@ -18,15 +19,36 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="nav_wrapper">
+    <div class="close_nav_wrapper">
+      <div>&#10006;</div>
+    </div>
+    <nav>
+      <ul>
+        <li>DASHBOARD</li>
+        <li>ADD USER</li>
+        <li>SCHOOL LIST</li>
+      </ul>
+    </nav>
+  </div>
+  <header>
+    <div id="menuBtn">
+      <img src="img/menu.png" alt="">
+    </div>
+    <div>
+      <img src="img/acc.png" alt="">
+      <p>ADMIN</p>
+    </div>
+  </header>
+  <div class="container-fluid w-75">
     <h2 class="text-center mt-5">DataTable CRUD</h2>
     <div class="row">
       <div class="container">
-        <div class="btnAdd">
+        <div class="btnAdd w-75">
           <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-success btn-sm">Add Data</a>
         </div>
         <div class="row">
-          <div class="col-md-1"></div>
+          <!-- <div class="col-md-1"></div> -->
           <div class="col-md-10">
             <table id="example" class="table">
               <thead>
@@ -44,7 +66,7 @@
               </tbody>
             </table>
           </div>
-          <div class="col-md-1"></div>
+          <!-- <div class="col-md-1"></div> -->
         </div>
       </div>
     </div>
@@ -215,9 +237,6 @@
       } else {
         return null;
       }
-
-
-
     })
   </script>
   <!-- Modal -->
@@ -364,8 +383,12 @@
       </div>
     </div>
   </div>
-</body>
+  <footer>
+    <p>COPYRIGHTS @ 2023</p>
+  </footer>
 
+  <script src="js/dashboard.js"></script>
+</body>
 </html>
 <script type="text/javascript">
   //var table = $('#example').DataTable();
