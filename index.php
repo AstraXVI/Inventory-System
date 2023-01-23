@@ -1,5 +1,5 @@
 <?php 
-require 'connection2.php';
+require 'connection.php';
 
 session_start();
 
@@ -28,7 +28,7 @@ if(isset($_POST['signin'])){
     
     
     $select = "SELECT * FROM `users` WHERE email = '$email' AND password = '$password'";
-    $list = $conn->query($select);
+    $list = $con->query($select);
     $fetch = $list->fetch_assoc();
     $userFound = $list->num_rows;
     

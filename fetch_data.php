@@ -1,7 +1,7 @@
 <?php include('connection.php');
 
 $output= array();
-$sql = "SELECT * FROM users ";
+$sql = "SELECT * FROM equipment ";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
