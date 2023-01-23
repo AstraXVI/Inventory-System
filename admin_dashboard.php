@@ -2,6 +2,12 @@
 
 session_start();
 
+if($_SESSION['role'] == 'invalid'){
+
+  header('Location: index.php');
+
+}
+
 if(isset($_POST['logout'])){
     unset($_SESSION['role']);
     unset($_SESSION['id']);
@@ -21,6 +27,7 @@ if(isset($_POST['logout'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap5.0.1.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/datatables-1.10.25.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   <link rel="stylesheet" href="css/dashboard.css"/>
   <title>DataTable CRUD</title>
   <style type="text/css">
@@ -33,22 +40,23 @@ if(isset($_POST['logout'])){
 </head>
 
 <body>
-  <div class="nav_wrapper">
+  <div class="nav_wrapper bg-light">
     <div class="close_nav_wrapper">
-      <div>&#10006;</div>
+      <div class="d-block ms-auto me-3 fs-3">&#128473;</div>
+      <!-- <span><i class="fas fa-user"></i></span> -->
     </div>
     <nav>
       <ul>
-        <li>DASHBOARD</li>
-        <li>ADD USER</li>
-        <li>SCHOOL LIST</li>
+        <li>Dashboard</li>
+        <li>Add School</li>
+        <li>School List</li>
       </ul>
       <form action="" method="post">
         <input type="submit" class="btn btn-danger btn-lg position-absolute bottom-0 ms-3 mb-4" name="logout" value="LOGOUT">
       </form>
     </nav>
   </div>
-  <header>
+  <header class="bg-primary">
     <div id="menuBtn">
       <img src="img/menu.png" alt="">
     </div>
@@ -61,7 +69,7 @@ if(isset($_POST['logout'])){
     <h2 class="text-center mt-5">DataTable CRUD</h2>
     <div class="row">
       <div class="container">
-        <div class="btnAdd w-75">
+        <div class="btnAdd w-100">
           <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-success btn-sm">Add Data</a>
         </div>
         <div class="row">
@@ -91,7 +99,8 @@ if(isset($_POST['logout'])){
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
