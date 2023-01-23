@@ -48,7 +48,7 @@ if(isset($_POST['logout'])){
     <nav>
       <ul>
         <li>Dashboard</li>
-        <li>Add School</li>
+        <li data-bs-toggle="modal" data-bs-target="#addSchool">Add School</li>
         <li>School List</li>
       </ul>
       <form action="" method="post">
@@ -96,6 +96,35 @@ if(isset($_POST['logout'])){
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="addSchool" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add School</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="schoolName" placeholder="name@example.com">
+        <label>School Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="address" placeholder="Password">
+        <label>Address</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="principalName" placeholder="Password">
+        <label>Principal Name</label>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='addSchoolBtn' data-bs-dismiss="modal">Add School</button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
@@ -125,6 +154,30 @@ if(isset($_POST['logout'])){
         ]
       });
     });
+    $(document).on('click','#addSchoolBtn',function(){
+      const school = $("#schoolName").val();
+      const address = $("#address").val();
+      const pName = $("#principalName").val();
+
+      $.ajax({
+        url: "add_school.php",
+        type: "post",
+        data: {
+          school : school,
+          address : address,
+          pName : pName
+        },
+        success:function(e){
+          // $("#test").html(e);
+          $("#schoolName").val("");
+          $("#address").val("");
+          $("#principalName").val("");
+          
+          // $("#addSchool").hide();
+          // alert("Add Success!")
+        }
+      })
+    })
     $(document).on('submit', '#addUser', function(e) {
       e.preventDefault();
       var code = $('#addCodeField').val();
@@ -410,6 +463,7 @@ if(isset($_POST['logout'])){
       </div>
     </div>
   </div>
+  <div id="test"></div>
   <?php require "footer.php" ?>
 
   <script src="js/dashboard.js"></script>
