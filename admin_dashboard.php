@@ -2,6 +2,13 @@
 
 session_start();
 
+$userId = $_SESSION['id'];
+
+$selectID = "SELECT * FROM `users` WHERE id = '$userId'";
+$search = $con->query($selectID);
+$fetchID = $search->fetch_assoc();
+
+
 if($_SESSION['role'] == 'invalid'){
 
   header('Location: index.php');
@@ -27,9 +34,10 @@ if(isset($_POST['logout'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap5.0.1.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/datatables-1.10.25.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/dashboard.css"/>
-  <title>DataTable CRUD</title>
+  <link rel="shortcut icon" href="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" type="image/x-icon">
+  <title>Equipments</title>
   <style type="text/css">
     .btnAdd {
       text-align: right;
@@ -43,30 +51,40 @@ if(isset($_POST['logout'])){
   <div class="nav_wrapper bg-light">
     <div class="close_nav_wrapper">
       <div class="d-block ms-auto me-3 fs-3">&#128473;</div>
-      <!-- <span><i class="fas fa-user"></i></span> -->
     </div>
     <nav>
+      <div><img class="d-block mx-auto" width="100px" height="100px" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo"></div>
       <ul>
         <li>Dashboard</li>
         <li>Add School</li>
         <li>School List</li>
       </ul>
-      <form action="" method="post">
-        <input type="submit" class="btn btn-danger btn-lg position-absolute bottom-0 ms-3 mb-4" name="logout" value="LOGOUT">
-      </form>
     </nav>
   </div>
-  <header class="bg-primary">
+  <header>
     <div id="menuBtn">
-      <img src="img/menu.png" alt="">
+      <span><i class="fa-solid fa-bars fs-3" style="color: whitesmoke"></i></span>
     </div>
     <div>
-      <img src="img/acc.png" alt="">
-      <p>ADMIN</p>
+      <span><i class="fa-solid fa-user fs-4 mt-1" style="color: whitesmoke"></i></span>
+      <div class="dropdown">
+        <a class="text-decoration-none dropdown-toggle ps-1" style="color: whitesmoke" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?php echo $fetchID['email']?>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+          <li><a class="dropdown-item" href="#">
+          <form action="" method="post">
+            <input type="submit" class="btn btn-danger btn-sm mt-2" name="logout" value="LOGOUT">
+          </form>
+          </a></li>
+        </ul>
+      </div>
     </div>
   </header>
   <div class="container-fluid mx-auto" style="width: 80%;">
-    <h2 class="text-center mt-5">DataTable CRUD</h2>
+    <h2 class="text-center mt-5">Gen T. De Leon National Highschool</h2>
     <div class="row">
       <div class="container">
         <div class="btnAdd w-100">
@@ -74,7 +92,7 @@ if(isset($_POST['logout'])){
         </div>
         <div class="row">
           <!-- <div class="col-md-1"></div> -->
-          <div class="col-md-13">
+          <div class="col-md-12">
             <table id="example" class="table">
               <thead>
                 <th>Item No.</th>
@@ -199,7 +217,7 @@ if(isset($_POST['logout'])){
               // table.cell(parseInt(trid) - 1,2).data(email);
               // table.cell(parseInt(trid) - 1,3).data(mobile);
               // table.cell(parseInt(trid) - 1,4).data(city);
-              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-primary btn-sm editbtn">Edit</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
+              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
               var row = table.row("[id='" + trid + "']");
               row.row("[id='" + trid + "']").data([id, code, article,date, unitValue, totalValue, sourceOfFund, description, button]);
               $('#exampleModal').modal('hide');

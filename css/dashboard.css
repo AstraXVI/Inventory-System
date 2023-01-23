@@ -1,5 +1,5 @@
 header{
-    background-color: rgb(24, 69, 246);
+    background-color: #0264cc;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,7 +35,7 @@ footer > p{
 }
 .nav_wrapper{
     /* border: 1px solid red; */
-    width: 250px;
+    width: 320px;
     position:absolute;
     inset: 0;
     z-index: 2;
@@ -76,7 +76,6 @@ footer > p{
     cursor: pointer;
 }
 .close_nav_wrapper div{
-    width: fit-content;
     padding: 2px;
     font-size: 20px;
     /* border: 1px solid white;
