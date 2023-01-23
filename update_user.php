@@ -9,7 +9,7 @@ $sourceOfFund = $_POST['sourceOfFund'];
 $id = $_POST['id'];
 $description = $_POST['description'];
 
-$sql = "UPDATE `users` SET `code` = '$code', `article` = '$article',`date` = '$date',`unitValue`='$unitValue', `totalValue`='$totalValue', `description` = '$description',`sourceOfFund`='$sourceOfFund' WHERE id='$id' ";
+$sql = "UPDATE `equipment` SET `code` = '$code', `article` = '$article',`date` = '$date',`unitValue`='$unitValue', `totalValue`='$totalValue', `description` = '$description',`sourceOfFund`='$sourceOfFund' WHERE id='$id' ";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)

@@ -2,7 +2,7 @@
 include('connection.php');
 
 $user_id = $_POST['id'];
-$sql = "DELETE FROM users WHERE id='$user_id'";
+$sql = "DELETE FROM equipment WHERE id='$user_id'";
 $delQuery =mysqli_query($con,$sql);
 if($delQuery==true)
 {
